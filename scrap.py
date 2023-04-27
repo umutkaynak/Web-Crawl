@@ -3,9 +3,8 @@ import requests
 import pandas as pd
 import random
 from time import sleep
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'}
 link="https://www.akakce.com/davlumbaz.html"
-r=requests.get(link,headers=headers)
+r=requests.get(link)
 soup=BeautifulSoup(r.content,"html.parser")
 
 
@@ -26,7 +25,7 @@ link=pd.read_excel("link.xlsx")
 
 while x<10:
     yeniLink=link.values[x][0]
-    r=requests.get(yeniLink,headers=headers)
+    r=requests.get(yeniLink)
     soup=BeautifulSoup(r.content,"html.parser")
     
     Model=soup.find("div",attrs={"class":"pdt_v8"})
@@ -135,4 +134,4 @@ while x<10:
 
 
 df=pd.DataFrame(excel,columns=["marka","model","link","Cihaz Tipi","Tasarım","Yüzey Tipi","Genişlik","Kontrol Paneli","Maximum Emiş Gücü","Ses Seviyesi","Kademe","Enerji Sınıfı","Renk","Aydınlatmalı","Güç","Filtre Malzemesi","Derinlik","Yükseklik","Güç W","renk"])
-df.to_excel("akakce1.xlsx")
+df.to_excel("snc.xlsx")
